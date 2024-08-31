@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 
 type Callback = (params: any) => any;
 
-export const thunkWrapper = (prefix: string, callback: Callback) => {
+export const thunkWrapper = (prefix: string, callback: Callback): any => {
   const name = `${prefix}/${callback.name}`;
   return createAsyncThunk(name, async (params, thunkAPI) => {
     try {
@@ -12,14 +12,14 @@ export const thunkWrapper = (prefix: string, callback: Callback) => {
       let resp = {};
 
       if (response.status === 200) {
-        resp = {...data}
+        resp = { ...data };
       } else {
-        resp = thunkAPI.rejectWithValue(data)
+        resp = thunkAPI.rejectWithValue(data);
       }
 
       return resp;
     } catch (e: any) {
-      return thunkAPI.rejectWithValue(e.response.data)
+      return thunkAPI.rejectWithValue(e.response.data);
     }
-  })
-}
+  });
+};
