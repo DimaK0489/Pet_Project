@@ -5,7 +5,7 @@ type Props = {}
 export const Todolist: React.FC<Props> = ({}: Props) => {
   return (
     <div>
-      Hello
+      <p>Todolist</p>
     </div>
   );
 }
