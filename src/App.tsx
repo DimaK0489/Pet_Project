@@ -1,19 +1,20 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.scss';
-import {Todolist} from "./pages/Todolist";
 import {useDispatch} from "react-redux";
-import {getAllTodolists} from "./util/slices/todolistSlice";
+import {getAllTasks, getAllTodolists} from "./util/slices/todolistSlice";
+import {TodoListContainer} from "./pages/TodoListContainer";
 
-function App() {
+const App: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllTodolists())
+      dispatch(getAllTodolists())
+      dispatch(getAllTasks())
   }, [dispatch])
 
   return (
     <div className="App">
-      <Todolist/>
+      <TodoListContainer />
     </div>
   );
 }

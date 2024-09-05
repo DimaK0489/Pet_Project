@@ -1,12 +1,11 @@
-import {combineReducers, configureStore} from '@reduxjs/toolkit'
-import {todolistSlice} from "../util/slices/todolistSlice";
-
-export const rootReducer = combineReducers({
-  todolists: todolistSlice,
-})
+import {configureStore} from '@reduxjs/toolkit'
+import {tasksSlice, todolistSlice} from "../util/slices/todolistSlice";
 
 export const store = configureStore({
-  reducer: rootReducer
+  reducer: {
+    todolists: todolistSlice.reducer,
+    tasks: tasksSlice.reducer
+  },
 })
 
 export type AppDispatch = typeof store.dispatch;
