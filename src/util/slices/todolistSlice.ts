@@ -1,17 +1,21 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {todolistApi, TodolistType} from "../api/todolistApi";
+import {TaskType, todolistApi, TodolistType} from "../api/todolistApi";
 import {thunkWrapper} from "../api/ThunkWrapper";
+import {RootState} from "../../store/store";
+import {defaultReducer} from "../api/DefaultReducer";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+
+export type FilterValuesType = 'all' | 'active' | 'completed';
+export type TodolistDomainType = TodolistType & {
+  filter: FilterValuesType
+}
+export type TasksStateType = {
+  [key: string]: Array<TaskType>
+}
 
 export const getAllTodolists = thunkWrapper("todolistApi", todolistApi.getAllTodolists);
+export const todolistSlice = defaultReducer(getAllTodolists);
+export const getTodolistsSelector = (state: RootState): [TodolistDomainType] => state.todolists.data
 
-export const todolistSlice = createSlice({
-  name: 'todolist',
-  initialState: [],
-  reducers: {},
-  extraReducers: builder => {
-    builder
-      .addCase(getAllTodolists.fulfilled, (state, action) => {
-        return action.payload.todolists.map((tl: TodolistType[]) => ({...tl, filter: 'all', entityStatus: 'idle'}))
-      })
-  }
-})
+export const getAllTasks = thunkWrapper('todolistApi', todolistApi.getTasks);
+export const tasksSlice = defaultReducer(getAllTasks);
+export const getTasksSelector = (state: RootState): TaskType[] => state.tasks.items

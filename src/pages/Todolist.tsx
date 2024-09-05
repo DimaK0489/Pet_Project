@@ -1,11 +1,16 @@
 import React from "react";
 
-type Props = {}
+interface Props {
+  todolist: any
+  id: string
+  tasks: any
+}
 
-export const Todolist: React.FC<Props> = ({}: Props) => {
+export const Todolist: React.FC<Props> = ({todolist, id, tasks}: Props) => {
+
   return (
     <div>
-      <p>Todolist</p>
+      <h4>{todolist.title}</h4>
     </div>
   );
 }
