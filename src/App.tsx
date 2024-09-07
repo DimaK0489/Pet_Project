@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import './App.scss';
-import {useDispatch, useSelector} from "react-redux";
-import {getAllTasks, getAllTodolists, getTodolistsSelector} from "./util/slices/todolistSlice";
+import {useDispatch} from "react-redux";
+import {getAllTasks, getAllTodolists} from "./util/slices/todolistSlice";
 import {TodoListContainer} from "./pages/TodoListContainer";
 import {Loading} from "./components/Loading/Loading";
+import {Login} from "./pages/Login/Login";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,8 @@ const App: React.FC = () => {
     loading
       ? <Loading/>
       : <div className="App">
-        <TodoListContainer/>
+        <Login/>
+        {/*<TodoListContainer/>*/}
       </div>
   );
 }

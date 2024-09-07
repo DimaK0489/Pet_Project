@@ -15,7 +15,6 @@ export const defaultReducer = (thunk: any): Slice =>
       })
       builder.addCase(thunk.fulfilled, (state, {payload}) => {
         state.isLoading = false;
-        console.log(state.isLoading);
         state.data = payload.data ?? payload;
       })
       builder.addCase(thunk.rejected, (state, {payload}) => {
