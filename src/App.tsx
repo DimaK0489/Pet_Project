@@ -5,6 +5,8 @@ import {getAllTasks, getAllTodolists} from "./util/slices/todolistSlice";
 import {TodoListContainer} from "./pages/TodoListContainer";
 import {Loading} from "./components/Loading/Loading";
 import {Login} from "./pages/Login/Login";
+import {Route, Routes} from 'react-router-dom';
+import {ROUTES} from "./common/routes";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,12 +21,12 @@ const App: React.FC = () => {
   }, [dispatch])
 
   return (
-    loading
-      ? <Loading/>
-      : <div className="App">
-        <Login/>
-        {/*<TodoListContainer/>*/}
-      </div>
+    <div className="App">
+      <Routes>
+        <Route path={'/'} element={loading ? <Login/> : <TodoListContainer/>}/>
+        <Route path={ROUTES.todolist} element={<TodoListContainer/>}/>
+      </Routes>
+    </div>
   );
 }
 
