@@ -1,0 +1,57 @@
+@import "src/styles/colors";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  height: 50%;
+  margin: 10em;
+  padding: 0;
+  background-color: $bg-color-dark-3;
+  border-radius: 13px;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  font-size: 64px;
+  color: $lime;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.inputContainer > .errorLabel {
+  color: $red;
+  font-size: 15px;
+  padding-top: 5px;
+}
+
+.inputBox {
+  height: 48px;
+  width: 400px;
+  font-size: large;
+  border-radius: 8px;
+  border: 1px solid $neutralGray;
+  padding-left: 8px;
+}
+.inputButton {
+  border: none;
+  background: $lime;
+  color: $black;
+  padding: 12px 24px;
+  margin: 20px;
+  font-size: 24px;
+  border-radius: 8px;
+  cursor: pointer;
+}

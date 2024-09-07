@@ -21,4 +21,3 @@ export const getTodolistsSelector = (state: RootState): [TodolistDomainType] & S
 
 export const getAllTasks = thunkWrapper('todolistApi', todolistApi.getTasks);
 export const tasksSlice = defaultReducer(getAllTasks);
-export const getTasksSelector = (state: RootState): TaskType[] => state.tasks.items
