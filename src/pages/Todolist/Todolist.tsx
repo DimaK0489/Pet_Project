@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './stylesTodolist.module.scss'
 
 interface Props {
   todolist: any
@@ -9,7 +10,7 @@ interface Props {
 export const Todolist: React.FC<Props> = ({todolist, id, tasks}: Props) => {
 
   return (
-    <div>
+    <div className={styles.container}>
       <h4>{todolist.title}</h4>
     </div>
   );

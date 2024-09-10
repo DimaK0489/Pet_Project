@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {useSelector} from "react-redux";
-import {getTodolistsSelector, TasksStateType} from "../util/slices/todolistSlice";
+import {getTodolistsSelector, TasksStateType} from "../../util/slices/todolistSlice";
 import {Todolist} from "./Todolist";
-import {RootState} from "../store/store";
+import {RootState} from "../../store/store";
 
 interface Props {
 }

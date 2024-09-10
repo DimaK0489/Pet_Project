@@ -9,3 +9,20 @@ export const instance = axios.create({
   },
   withCredentials: true
 })
+
+export const getToken = (): string | null => localStorage.getItem('token');
+
+export const setTokens = (token: string): void => {
+  localStorage.setItem("token", token);
+};
+
+export const clearToken = (): void => {
+  localStorage.removeItem('token')
+}
+
+export const tokenInstance = axios.create({
+  baseURL,
+  headers: {
+    Authorization: `Bearer ${getToken()}`,
+  },
+});
