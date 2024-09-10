@@ -25,8 +25,7 @@ export const loginUser = createAsyncThunk('login', async ({
     let resp = {}
 
     if (response.status === 200) {
-      // @ts-ignore
-      setTokens(data.token);
+      setTokens(data.data.token);
       resp = data;
     } else {
       resp = thunkAPI.rejectWithValue(data);
