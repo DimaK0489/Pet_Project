@@ -28,16 +28,14 @@ export const Login = () => {
     }
 
     if (isSuccess) {
-      console.log(isSuccess)
       navigate(ROUTES.todolist);
     }
   }, [isError, isSuccess, dispatch]);
 
-  function handleSubmit() {
+  const handleSubmit = () => {
     // @ts-ignore
     dispatch(loginUser({email, password, rememberMe}));
   }
-  console.log(isPasswordValid(password))
   const onButtonClick = () => {
     setEmailError('')
     setPasswordError('')
@@ -57,7 +55,6 @@ export const Login = () => {
       return
     }
     if (isValidEmail(email) && isPasswordValid(password) && rememberMe) {
-      console.log(isPasswordValid(password))
       handleSubmit()
     }
 
@@ -91,12 +88,12 @@ export const Login = () => {
         />
         <label className={styles.errorLabel}>{passwordError}</label>
       </div>
-      <div>
+      <br/>
+      <div className={styles.inputChecked}>
         <input type='checkbox'
-               className={styles.inputChecked}
                checked={rememberMe}
                onChange={() => setRememberMe(!rememberMe)}/>
-        <p>RememberMe</p>
+        <label>RememberMe</label>
       </div>
       <br/>
       <div className={styles.inputContainer}>

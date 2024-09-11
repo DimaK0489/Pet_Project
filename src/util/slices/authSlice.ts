@@ -5,7 +5,7 @@ import {RootState} from "../../store/store";
 import { clearToken, setTokens } from "../api";
 
 export interface AuthSelectorType {
-  info: {userId: string} | null;
+  info: {userId: string, token: string} | null;
   isFetching: boolean;
   isSuccess: boolean;
   isError: boolean;
