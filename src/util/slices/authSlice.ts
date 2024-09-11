@@ -78,4 +78,4 @@ export const authSlice = createSlice({
 })
 
 export const {logout, clearState} = authSlice.actions;
-export const authSelector = (state: RootState) => state.auth;
+export const authSelector = (state: RootState): AuthSelectorType => state.auth;

@@ -1,17 +1,10 @@
 import React from 'react';
 import styles from './Loading.module.scss'
 
-interface Props {
-  show: boolean,
-  setShow: (show: boolean) => void
-}
-
-export const Loading: React.FC<Props> = ({show, setShow}) => {
+export const Loading: React.FC = () => {
   return (
-    <>
-      {show ? <div className={styles.ring}>
-        Loading
-      </div> : setShow}
-    </>
+    <div className={styles.ring}>
+      Loading
+    </div>
   );
 }

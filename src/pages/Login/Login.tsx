@@ -17,12 +17,6 @@ export const Login = () => {
   const {isSuccess, isError} = useSelector(authSelector);
 
   useEffect(() => {
-    return () => {
-      dispatch(clearState());
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
     if (isError) {
       dispatch(clearState());
     }
