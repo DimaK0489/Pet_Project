@@ -7,7 +7,7 @@ export interface LoginType {
   rememberMe: boolean,
   captcha?: boolean
 }
-interface ResponseType {
+interface LoginUserData {
   resultCode: number
   messages: Array<string>
   data: {
@@ -18,6 +18,6 @@ interface ResponseType {
 
 export const authApi = {
   login(data: LoginType) {
-    return instance.post<ResponseType>(endpoints.LOGIN, data)
+    return instance.post<LoginUserData>(endpoints.LOGIN, data)
   }
 }

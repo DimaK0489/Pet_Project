@@ -5,7 +5,7 @@ import {RootState} from "../../store/store";
 import { clearToken, setTokens } from "../api";
 
 export interface AuthSelectorType {
-  info: {userId: string, token: string} | null;
+  info: {userId: number, token: string} | null;
   isFetching: boolean;
   isSuccess: boolean;
   isError: boolean;
@@ -69,7 +69,7 @@ export const authSlice = createSlice({
     builder.addCase(loginUser.rejected, (state, payload: any) => {
       state.isFetching = false;
       state.isError = true;
-      state.errorMessage = payload?.message;
+      state.errorMessage = payload?.messages;
     })
     builder.addCase(loginUser.pending, (state) => {
       state.isFetching = true;

@@ -5,13 +5,14 @@ import {authSelector, clearState, loginUser} from "../../util/slices/authSlice";
 import {useNavigate} from "react-router-dom";
 import {isPasswordValid, isValidEmail} from "../../util/helpers";
 import {ROUTES} from "../../common/routes";
+import {AppDispatch} from "../../store/store";
 
 export const Login = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const [email, setEmail] = useState<string>('dim040489@gmail.com');
+  const [email, setEmail] = useState<string>('');
   const [emailError, setEmailError] = useState<string>('');
-  const [password, setPassword] = useState<string>('w1934skd');
+  const [password, setPassword] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
   const [rememberMe, setRememberMe] = useState<boolean>(false)
   const {isSuccess, isError} = useSelector(authSelector);
@@ -27,7 +28,6 @@ export const Login = () => {
   }, [isError, isSuccess, dispatch]);
 
   const handleSubmit = () => {
-    // @ts-ignore
     dispatch(loginUser({email, password, rememberMe}));
   }
   const onButtonClick = () => {
@@ -56,7 +56,6 @@ export const Login = () => {
       setPasswordError('The password must be 8 characters or longer')
       return
     }
-
   }
 
   return (

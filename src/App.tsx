@@ -9,10 +9,11 @@ import {ROUTES} from "./common/routes";
 import {getToken} from "./util/api";
 import {authSelector} from "./util/slices/authSlice";
 import {Loading} from "./components/Loading/Loading";
+import {AppDispatch} from "./store/store";
 
 const App: React.FC = () => {
   let authenticated = !!getToken();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const {isFetching} = useSelector(authSelector);
 
   useEffect(() => {
