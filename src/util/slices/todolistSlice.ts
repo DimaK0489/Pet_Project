@@ -1,8 +1,7 @@
 import {TaskType, todolistApi, TodolistType} from "../api/todolistApi";
-import {thunkWrapper} from "../api/ThunkWrapper";
+import {thunkWrapper} from "../ThunkWrapper";
 import {RootState} from "../../store/store";
-import {defaultReducer} from "../api/DefaultReducer";
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {defaultReducer} from "../DefaultReducer";
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 export type ShowAppSelectorType = {
@@ -21,3 +20,4 @@ export const getTodolistsSelector = (state: RootState): [TodolistDomainType] & S
 
 export const getAllTasks = thunkWrapper('todolistApi', todolistApi.getTasks);
 export const tasksSlice = defaultReducer(getAllTasks);
+export const getTasksSelector = (state: RootState) => state.tasks.data

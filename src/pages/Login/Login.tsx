@@ -25,7 +25,7 @@ export const Login = () => {
     if (isSuccess) {
       navigate(ROUTES.todolist);
     }
-  }, [isError, isSuccess, dispatch]);
+  }, [isError, isSuccess, dispatch, navigate]);
 
   const handleSubmit = () => {
     dispatch(loginUser({email, password, rememberMe}));
