@@ -9,7 +9,7 @@ export const thunkWrapper = (prefix: string, callback: Callback): any => {
       const response = await callback(params);
 
       const data = await response.data;
-      let resp = {};
+      let resp: {};
 
       if (response.status === 200) {
         resp = [...data];

@@ -47,6 +47,6 @@ export const todolistApi = {
     return instance.get<TodolistType[]>(endpoints.TODOLISTS)
   },
   getTasks(todolistId: string): Promise<AxiosResponse<GetTasksResponse>> {
-    return instance.get<GetTasksResponse>(endpoints.TASKS('705b90ce-7cb6-4666-9c6a-2dc59a99240e'))
+    return instance.get<GetTasksResponse>(endpoints.TASKS(todolistId))
   }
 }

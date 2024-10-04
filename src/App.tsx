@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import './App.scss';
 import {useDispatch, useSelector} from "react-redux";
-import {getAllTasks, getAllTodolists} from "./util/slices/todolistSlice";
+import {getAllTodolists} from "./util/slices/todolistSlice";
 import {TodoListContainer} from "./pages/Todolist/TodoListContainer";
 import {Login} from "./pages/Login/Login";
 import {Route, Routes} from 'react-router-dom';
@@ -10,6 +10,8 @@ import {getToken} from "./util/api";
 import {authSelector} from "./util/slices/authSlice";
 import {Loading} from "./components/Loading/Loading";
 import {AppDispatch} from "./store/store";
+import {getAllTasks} from "./util/slices/tasksSlice";
+import {PrivateRoute} from "./util/PrivetRoute";
 
 const App: React.FC = () => {
   let authenticated = !!getToken();
@@ -19,7 +21,6 @@ const App: React.FC = () => {
   useEffect(() => {
     if (authenticated) {
       dispatch(getAllTodolists())
-      dispatch(getAllTasks())
     }
   }, [authenticated, dispatch])
 
