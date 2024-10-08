@@ -1,25 +1,28 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useSelector} from "react-redux";
 import {getTodolistsSelector} from "../../util/slices/todolistSlice";
 import {Todolist} from "./Todolist";
-import {RootState} from "../../store/store";
-import {TasksStateType} from "../../util/slices/tasksSlice";
+import {getTasksSelector} from "../../util/slices/tasksSlice";
+import {Loading} from "../../components/Loading/Loading";
 
 interface Props {
 }
 
 export const TodoListContainer = ({}: Props) => {
   const allTodolists = useSelector(getTodolistsSelector);
-  const tasks = useSelector<RootState, TasksStateType>(state => state.tasks);
-  console.log(allTodolists)
+  const tasks = useSelector(getTasksSelector)
+  const todolists = Object.values(allTodolists)
+
   return (
     <>
       {
-        allTodolists.map((item) => {
+        todolists.map((item) => {
           let allTasks = tasks[item.id]
           return <div key={item.id}>
             <Todolist
-              todolist={item}
+              key={item.id}
+              todolistId={item.id}
+              title={item.title}
               tasks={allTasks}
             />
           </div>

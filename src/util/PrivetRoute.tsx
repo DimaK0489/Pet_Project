@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "../store/store";
 import {getAllTodolists, getTodolistsSelector} from "./slices/todolistSlice";
 import {ROUTES} from "../common/routes";
-import {getAllTasks} from "./slices/tasksSlice";
+//import {getAllTasks} from "./slices/tasksSlice";
 
 interface Props {
   component: any;

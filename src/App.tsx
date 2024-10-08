@@ -10,8 +10,6 @@ import {getToken} from "./util/api";
 import {authSelector} from "./util/slices/authSlice";
 import {Loading} from "./components/Loading/Loading";
 import {AppDispatch} from "./store/store";
-import {getAllTasks} from "./util/slices/tasksSlice";
-import {PrivateRoute} from "./util/PrivetRoute";
 
 const App: React.FC = () => {
   let authenticated = !!getToken();
