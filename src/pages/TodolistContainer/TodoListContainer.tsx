@@ -1,9 +1,10 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {useSelector} from "react-redux";
 import {getTodolistsSelector} from "../../util/slices/todolistSlice";
-import {Todolist} from "./Todolist";
+import {Todolist} from "./Todolist/Todolist";
 import {getTasksSelector} from "../../util/slices/tasksSlice";
-import {Loading} from "../../components/Loading/Loading";
+import './stylesTodolistContainer.scss'
+import {Menu} from "../../components/Menu/Menu";
 
 interface Props {
 }
@@ -14,11 +15,11 @@ export const TodoListContainer = ({}: Props) => {
   const todolists = Object.values(allTodolists)
 
   return (
-    <>
+    <div className={'tc-container'}>
       {
         todolists.map((item) => {
           let allTasks = tasks[item.id]
-          return <div key={item.id}>
+          return <div key={item.id} className={'tc-container__content'}>
             <Todolist
               key={item.id}
               todolistId={item.id}
@@ -28,6 +29,6 @@ export const TodoListContainer = ({}: Props) => {
           </div>
         })
       }
-    </>
+    </div>
   );
 }

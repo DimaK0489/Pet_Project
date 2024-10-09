@@ -1,0 +1,15 @@
+@import "../../styles/colors";
+@import "../../styles/fonts";
+
+.tc-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  min-height: 80vh;
+
+  .tc-container__content {
+  }
+
+}
+
+

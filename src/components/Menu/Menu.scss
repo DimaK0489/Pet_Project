@@ -1,0 +1,55 @@
+@import "src/styles/colors";
+@import "src/styles/constants";
+
+.tl-menu {
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: $bg-color-dark-3;
+
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: $bodyWidth;
+    margin: auto;
+    padding: $bodyPadding;
+  }
+  &__left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    max-height: 40px;
+  }
+
+  &__logo {
+    margin-top: 4px;
+    width: 130px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  &__icon {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+  }
+
+  &__listItems {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 30vh;
+  }
+
+  &__item {
+    border-radius: 5px;
+    border-color: red;
+  }
+
+  &__logOut {
+    cursor: pointer;
+  }
+}
