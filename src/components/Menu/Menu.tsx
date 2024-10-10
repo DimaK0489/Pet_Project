@@ -19,9 +19,9 @@ export const Menu: React.FC = () => {
           </div>
         </div>
         <ul className='tl-menu__listItems'>
-          <li className='tl-menu__item'>title</li>
-          <li className='tl-menu__item'>title</li>
-          <li className='tl-menu__item'>title</li>
+          <li className='tl-menu__item'>Calendar</li>
+          <li className='tl-menu__item'>Profile</li>
+          <li className='tl-menu__item'>Settings</li>
         </ul>
         <div className='tl-menu__logOut'>
           <LogoutIcon onClick={() => navigate(ROUTES.login)}/>

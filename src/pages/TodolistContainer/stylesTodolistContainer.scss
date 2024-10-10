@@ -3,13 +3,17 @@
 
 .tc-container {
   display: flex;
-  justify-content: center;
   flex-direction: row;
-  min-height: 80vh;
+  justify-content: space-around;
+  margin-top: 3em;
 
-  .tc-container__content {
+  &__content {
+    width: 100vh;
+    max-width: 40vh;
+    min-height: 40vh;
+    border-radius: 5px;
+    background-color: $neutral;
   }
-
 }
 
 

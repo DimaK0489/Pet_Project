@@ -1,6 +1,6 @@
 import React from "react";
 import {TaskType} from "../../util/api/todolistApi";
-import styles from './Tasks.module.scss'
+import "./Tasks.scss"
 
 interface Props {
   task: TaskType,
@@ -8,10 +8,12 @@ interface Props {
 }
 
 export const Task: React.FC<Props> = ({task, todolistID}) => {
-  console.log(task)
+
   return (
-    <div key={task.id} className={styles.container}>
-      <span>{task.title}</span>
+    <div key={task.id} className='t-container'>
+      <div className='t-container__content'>
+        <span className='t-container__title'>{task.title}</span>
+      </div>
     </div>
   )
 }

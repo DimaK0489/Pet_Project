@@ -4,7 +4,6 @@ import {getTodolistsSelector} from "../../util/slices/todolistSlice";
 import {Todolist} from "./Todolist/Todolist";
 import {getTasksSelector} from "../../util/slices/tasksSlice";
 import './stylesTodolistContainer.scss'
-import {Menu} from "../../components/Menu/Menu";
 
 interface Props {
 }
@@ -19,7 +18,7 @@ export const TodoListContainer = ({}: Props) => {
       {
         todolists.map((item) => {
           let allTasks = tasks[item.id]
-          return <div key={item.id} className={'tc-container__content'}>
+          return <div key={item.id} className='tc-container__content'>
             <Todolist
               key={item.id}
               todolistId={item.id}

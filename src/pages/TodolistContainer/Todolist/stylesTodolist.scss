@@ -1,5 +1,33 @@
-@import "../../../styles/colors";
+@import "src/styles/colors";
+@import "src/styles/constants";
 
 .tl-container {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__header {
+    padding-top: 5px;
+    min-height: 6vh;
+    border-bottom: 3px solid $primary;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: x-large;
+    color: $text-color;
+    font-weight: lighter;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 0 10px;
+  }
+
+  &__empty {
+    font-size: $fontSizeX;
+    padding: 10px;
+    color: $neutralGray;
+  }
 }

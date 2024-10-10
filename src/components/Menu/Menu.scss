@@ -40,13 +40,21 @@
   &__listItems {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 30vh;
+    justify-content: space-around;
+    width: 100vh;
+    max-width: 75vh;
   }
 
   &__item {
+    padding: 5px;
+    text-align: center;
+    width: 100vh;
+    max-width: 20vh;
+    min-height: 3vh;
+    list-style: none;
+    cursor: pointer;
+    background-color: $black;
     border-radius: 5px;
-    border-color: red;
   }
 
   &__logOut {

@@ -20,10 +20,14 @@ export const Todolist: React.FC<Props> = ({tasks, todolistId, title}: Props) => 
   }, [dispatch])
 
   return (
-    <div key={todolistId} className={'tl-container'}>
-      <h4>{title}</h4>
-      {/*{!tasks?.length && <div style={{padding: '10px', color: 'grey'}}>No task</div>}*/}
-      {/*{tasks?.map(task => <Task key={task.id} task={task} todolistID={todolistId}/>)}*/}
+    <div key={todolistId} className='tl-container'>
+      <div className='tl-container__header'>
+        <h4 className='tl-container__title'>{title}</h4>
+      </div>
+      <div className='tl-container__content'>
+        {!tasks?.length && <div className={'tl-container__empty'}>No task</div>}
+        {tasks?.map(task => <Task key={task.id} task={task} todolistID={todolistId}/>)}
+      </div>
     </div>
   );
 }

@@ -1,0 +1,17 @@
+@import "src/styles/colors";
+@import "src/styles/fonts";
+@import "src/styles/constants";
+
+.t-container {
+  display: flex;
+  align-items: flex-start;
+
+  &__content {
+    padding: 5px;
+  }
+
+  &__title {
+    color: $bg-color-dark-3;
+    font-size: $fontSizeL;
+  }
+}
