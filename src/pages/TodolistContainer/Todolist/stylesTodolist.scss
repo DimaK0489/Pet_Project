@@ -4,11 +4,14 @@
 .tl-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  overflow: hidden;
 
   &__header {
-    padding-top: 5px;
-    min-height: 6vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 20px 0 10px;
+    height: 8vh;
     border-bottom: 3px solid $primary;
   }
 
@@ -17,12 +20,16 @@
     font-size: x-large;
     color: $text-color;
     font-weight: lighter;
+    overflow: auto;
   }
 
   &__content {
+    height: 100vh;
+    max-height: 35vh;
     display: flex;
     flex-direction: column;
     margin: 10px 0 0 10px;
+    overflow-y: auto;
   }
 
   &__empty {

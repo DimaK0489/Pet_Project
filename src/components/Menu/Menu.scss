@@ -2,6 +2,7 @@
 @import "src/styles/constants";
 
 .tl-menu {
+  width: 100%;
   padding: 10px 0;
   position: sticky;
   top: 0;
@@ -16,6 +17,7 @@
     margin: auto;
     padding: $bodyPadding;
   }
+
   &__left {
     display: flex;
     justify-content: center;
@@ -25,10 +27,17 @@
   }
 
   &__logo {
+    display: flex;
+    flex-direction: row;
     margin-top: 4px;
     width: 130px;
     height: 40px;
     cursor: pointer;
+  }
+
+  &__titleLogo {
+    font-size: $fontSizeL;
+    margin: 10px 5px;
   }
 
   &__icon {

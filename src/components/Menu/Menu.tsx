@@ -13,9 +13,8 @@ export const Menu: React.FC = () => {
       <div className='tl-menu__body'>
         <div className='tl-menu__left'>
           <div className='tl-menu__logo' onClick={() => navigate(ROUTES.todolist)}>
-            <p>
-              <img className={"tl-menu__icon"} src={todo} alt={'todo'}/>
-            </p>
+            <p className='tl-menu__titleLogo'> Todolist</p>
+            <img className={"tl-menu__icon"} src={todo} alt={'todo'}/>
           </div>
         </div>
         <ul className='tl-menu__listItems'>

@@ -4,10 +4,12 @@
 
 .t-container {
   display: flex;
-  align-items: flex-start;
 
   &__content {
-    padding: 5px;
+    width: 100vh;
+    max-width: 32vh;
+    padding: 15px;
+    border-bottom: 1px solid $red;
   }
 
   &__title {
