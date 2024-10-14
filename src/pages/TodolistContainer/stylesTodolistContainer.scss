@@ -4,18 +4,19 @@
 .tc-container {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
   max-width: 90%;
   height: 100vh;
-  list-style: none;
 
   &__content {
     width: 100vh;
     max-width: 45vh;
     min-height: 45vh;
     border-radius: 5px;
-    margin: auto;
     background-color: $neutral;
+    margin: 3em 0 0 0;
   }
 }
 

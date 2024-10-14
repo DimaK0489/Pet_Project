@@ -10,8 +10,8 @@ interface Props {
 
 export const TodoListContainer = ({}: Props) => {
   const allTodolists = useSelector(getTodolistsSelector);
-  const tasks = useSelector(getTasksSelector)
-  const todolists = Object.values(allTodolists)
+  const tasks = useSelector(getTasksSelector);
+  const todolists = Object.values(allTodolists);
 
   return (
     <div className={'tc-container'}>
