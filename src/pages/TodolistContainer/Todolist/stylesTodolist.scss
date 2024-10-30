@@ -20,7 +20,6 @@
     font-size: x-large;
     color: $text-color;
     font-weight: lighter;
-    overflow: auto;
   }
 
   &__content {
@@ -28,8 +27,8 @@
     max-height: 35vh;
     display: flex;
     flex-direction: column;
-    margin: 10px 0 0 10px;
-    overflow-y: auto;
+    margin: 10px 0 10px 10px;
+    overflow: auto;
   }
 
   &__empty {

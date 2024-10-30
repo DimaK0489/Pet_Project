@@ -12,7 +12,7 @@ export const thunkWrapper = (prefix: string, callback: Callback): any => {
       let resp: {};
 
       if (response.status === 200) {
-        resp = {...data};
+        resp = [...data];
       } else {
         resp = thunkAPI.rejectWithValue(data);
       }

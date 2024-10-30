@@ -7,7 +7,7 @@ import {ReactComponent as BG} from "../src/images/bgDark.svg";
 const App: React.FC = () => {
   return (
     <div className="App">
-      <div className='App__landing'>
+      <div className='App__background'>
         <BG/>
       </div>
       <Menu/>

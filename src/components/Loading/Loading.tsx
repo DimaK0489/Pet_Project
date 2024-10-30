@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './Loading.module.scss'
+import  './Loading.scss'
 
 export const Loading: React.FC = () => {
   return (
-    <div className={styles.ring}>
+    <div className='ring'>
       Loading
     </div>
   );

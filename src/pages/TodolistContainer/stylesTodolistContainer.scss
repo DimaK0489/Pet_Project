@@ -10,13 +10,18 @@
   max-width: 90%;
   height: 100vh;
 
+  &__form {
+    position: absolute;
+    margin-top: 2em;
+  }
+
   &__content {
     width: 100vh;
     max-width: 45vh;
     min-height: 45vh;
     border-radius: 5px;
     background-color: $neutral;
-    margin: 3em 0 0 0;
+    margin: 7em 0 0 0;
   }
 }
 

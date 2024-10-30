@@ -36,15 +36,31 @@ export type TaskType = {
   order: number
   addedDate: string
 }
+
 type GetTasksResponse = {
   error: string | null
   totalCount: number
   items: TaskType[]
 }
 
+export type ResponseType<D = {}> = {
+  resultCode: number
+  messages: Array<string>
+  data: D
+}
+
 export const todolistApi = {
   getAllTodolists() {
     return instance.get<TodolistType[]>(endpoints.TODOLISTS)
+  },
+  removeTodolist(todolistId: string) {
+    return instance.delete<ResponseType>(endpoints.DELETE_UPDATE_TODOLIST(todolistId))
+  },
+  addTodolist(title: string) {
+    return instance.post<ResponseType<{ item: TodolistType }>>(endpoints.TODOLISTS, {title: title})
+  },
+  updateTitleForTodolist(todolistId: string) {
+    return instance.put(endpoints.DELETE_UPDATE_TODOLIST(todolistId))
   },
   getTasks(todolistId: string): Promise<AxiosResponse<GetTasksResponse>> {
     return instance.get<GetTasksResponse>(endpoints.TASKS(todolistId))
