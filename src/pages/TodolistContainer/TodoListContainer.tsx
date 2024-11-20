@@ -1,35 +1,38 @@
-import React, {useCallback} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React from "react";
+import {useSelector} from "react-redux";
 import {Todolist} from "./Todolist/Todolist";
 import {getTasksSelector} from "../../util/slices/tasksSlice";
 import './stylesTodolistContainer.scss'
-import {AppDispatch} from "../../store/store";
 import {AddForm} from "../../components/AddForm/AddForm";
+import {useAddTodolistMutation, useDeleteTodolistMutation} from "../../util/rtkAPi/todolistAPI";
 
 interface Props {
   data: any
 }
 
 export const TodoListContainer = ({data}: Props) => {
-  const dispatch = useDispatch<AppDispatch>();
   const tasks = useSelector(getTasksSelector);
+  const [addTodolist] = useAddTodolistMutation();
+  const [deleteTodolist] = useDeleteTodolistMutation();
 
-  const onDeleteTodolist = (todolistId: string) => {
-    // const updateState = allTodolists.filter((item) => {
-    //   return item.id !== todolistId
-    // })
-    // dispatch(deleteTodolist(todolistId))
-    // dispatch(updateStateData(updateState))
+  const handleDeleteTodolist = (todolistId: string) => {
+    deleteTodolist(todolistId)
   }
-
-  const addNewTodolist = useCallback(async (title: string) => {
-    //await dispatch(addTodolist(title))
-  }, [])
+  const handleAddTodolist = async (title: string) => {
+    await addTodolist({title});
+    alert("User created successfully!");
+  };
+  // const handleAddTodolist = (title: any) => {
+  //   addTodolist(title)
+  // }
+  // const addNewTodolist = useCallback(async (title: string) => {
+  //   //await dispatch(addTodolist(title))
+  // }, [])
 
   return (
     <div className='tc-container'>
       <div className='tc-container__form'>
-        <AddForm addItem={addNewTodolist} />
+        <AddForm addItem={handleAddTodolist}/>
       </div>
       {
         data && data?.map((item: any) => {
@@ -40,7 +43,7 @@ export const TodoListContainer = ({data}: Props) => {
               todolistId={item.id}
               title={item.title}
               tasks={allTasks}
-              onDeleteTodolist={onDeleteTodolist}
+              onDeleteTodolist={handleDeleteTodolist}
             />
           </div>
         })

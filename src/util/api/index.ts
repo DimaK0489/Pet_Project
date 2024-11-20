@@ -1,12 +1,13 @@
 import axios from "axios";
 
-export const baseURL = process.env.REACT_APP_API_URL;
+export const defaultUrl = process.env.REACT_APP_API_URL;
+export const apiKey = {
+  'API-KEY': '0f03df5e-8a23-4413-a2ef-8bf682a31c70'
+}
 
 export const instance = axios.create({
-  baseURL,
-  headers: {
-    'API-KEY': '0f03df5e-8a23-4413-a2ef-8bf682a31c70'
-  },
+  baseURL: defaultUrl,
+  headers: apiKey,
   withCredentials: true
 })
 
@@ -21,7 +22,7 @@ export const clearToken = (): void => {
 }
 
 export const tokenInstance = axios.create({
-  baseURL,
+  baseURL: defaultUrl,
   headers: {
     Authorization: `Bearer ${getToken()}`,
   },

@@ -1,9 +1,7 @@
 import {TodolistType} from "../api/todolistApi";
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
-export type ShowAppSelectorType = {
-  isLoading: boolean;
-};
+
 export type TodolistDomainType = TodolistType & {
   filter: FilterValuesType
 }
