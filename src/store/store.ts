@@ -2,7 +2,7 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit'
 import {authSlice} from "../util/slices/authSlice";
 import {tasksSlice} from "../util/slices/tasksSlice";
 import {todolistAPI} from "../util/rtkAPi/todolistAPI";
-import { setupListeners } from '@reduxjs/toolkit/query'
+import {setupListeners} from '@reduxjs/toolkit/query'
 
 const combinedReducer = combineReducers({
   [todolistAPI.reducerPath]: todolistAPI.reducer,

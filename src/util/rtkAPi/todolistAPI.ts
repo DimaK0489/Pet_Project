@@ -1,21 +1,30 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {ResponseType, TodolistType} from "../api/todolistApi";
+import {ResponseType, TodolistType} from "../api/tasksAPI";
 import {endpoints} from "../../common/endpoints";
-import {apiKey, defaultUrl} from "../api";
+import {API_KEY, BASE_URL} from "../api";
 
 export const todolistAPI = createApi({
   reducerPath: 'todolists',
-  tagTypes: ['todolists'],
-  baseQuery: fetchBaseQuery({baseUrl: defaultUrl}),
+  tagTypes: ['Todolists'],
+  baseQuery: fetchBaseQuery({
+    baseUrl: BASE_URL,
+    prepareHeaders: (headers) => {
+      headers.set('Content-Type', 'application/json')
+      headers.set('API-KEY', API_KEY)
+      return headers
+    }
+  }),
   endpoints: (build) => ({
     getTodolists: build.query<TodolistType[], void>({
       query: () => ({
         url: endpoints.TODOLISTS,
         method: 'GET',
-        headers: apiKey,
         credentials: 'include',
-        providesTags: ['todolists']
-      })
+      }),
+      providesTags: (result) =>
+        result
+          ? [...result.map(({id}) => ({type: 'Todolists' as const, id})), 'Todolists']
+          : ['Todolists'],
     }),
     addTodolist: build.mutation<{ item: TodolistType }, { title: string }>({
       query: (title) => ({
@@ -23,19 +32,33 @@ export const todolistAPI = createApi({
         method: 'POST',
         body: title,
         credentials: 'include',
-        invalidatesTags: ['todolists']
       }),
+      invalidatesTags: ['Todolists']
     }),
     deleteTodolist: build.mutation<ResponseType, string>({
-      query: (todolistID) => ({
-        url: endpoints.DELETE_UPDATE_TODOLIST(todolistID),
+      query: (todolistId) => ({
+        url: endpoints.DELETE_TODOLIST(todolistId),
         method: 'DELETE',
         credentials: 'include',
       }),
+      invalidatesTags: ['Todolists']
+    }),
+    updateTitleForTodolist: build.mutation<ResponseType, Partial<ResponseType> & Pick<ResponseType, 'id'>>({
+      query: (body) => ({
+        url: `/todo-lists/${body.id}`,
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: ['Todolists'],
     }),
   })
 })
 
-export const {useGetTodolistsQuery, useAddTodolistMutation, useDeleteTodolistMutation} = todolistAPI
+export const {
+  useGetTodolistsQuery,
+  useAddTodolistMutation,
+  useDeleteTodolistMutation,
+  useUpdateTitleForTodolistMutation
+} = todolistAPI
 
 

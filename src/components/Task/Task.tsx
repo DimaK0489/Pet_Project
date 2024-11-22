@@ -1,5 +1,5 @@
 import React from "react";
-import {TaskType} from "../../util/api/todolistApi";
+import {TaskType} from "../../util/api/tasksAPI";
 import "./Tasks.scss"
 
 interface Props {

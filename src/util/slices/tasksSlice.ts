@@ -1,4 +1,4 @@
-import {TaskType, todolistApi} from "../api/todolistApi";
+import {TaskType, taskAPI} from "../api/tasksAPI";
 import {RootState} from "../../store/store";
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
@@ -22,7 +22,7 @@ export const tasksSlice = createSlice({
 
 export const fetchTasks = createAsyncThunk<{ tasks: TaskType[], todolistId: string }, string>('tasks/fetchTasks', async (todolistId) => {
   try {
-    const res = await todolistApi.getTasks(todolistId)
+    const res = await taskAPI.getTasks(todolistId)
     const tasks = res.data.items
     return {tasks, todolistId}
   } catch (error: any) {

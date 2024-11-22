@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {TaskType} from "../../../util/api/todolistApi";
+import {TaskType} from "../../../util/api/tasksAPI";
 import {useDispatch} from "react-redux";
 import {fetchTasks} from "../../../util/slices/tasksSlice";
 import {AppDispatch} from "../../../store/store";

@@ -22,12 +22,6 @@ export const TodoListContainer = ({data}: Props) => {
     await addTodolist({title});
     alert("User created successfully!");
   };
-  // const handleAddTodolist = (title: any) => {
-  //   addTodolist(title)
-  // }
-  // const addNewTodolist = useCallback(async (title: string) => {
-  //   //await dispatch(addTodolist(title))
-  // }, [])
 
   return (
     <div className='tc-container'>
