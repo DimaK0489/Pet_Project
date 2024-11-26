@@ -1,6 +1,6 @@
 import React from "react";
-import {TaskType} from "../../util/api/todolistApi";
 import "./Tasks.scss"
+import {TaskType} from "../../util/rtkAPi/typesForTasks";
 
 interface Props {
   task: TaskType,
