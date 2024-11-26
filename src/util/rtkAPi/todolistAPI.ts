@@ -1,7 +1,8 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {ResponseType, TodolistType} from "../api/tasksAPI";
+import {ResponseType} from "./typesForTodolist";
 import {endpoints} from "../../common/endpoints";
 import {API_KEY, BASE_URL} from "../api";
+import {TodolistType} from "./typesForTodolist";
 
 export const todolistAPI = createApi({
   reducerPath: 'todolists',

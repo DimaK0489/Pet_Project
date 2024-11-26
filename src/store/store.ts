@@ -1,19 +1,19 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit'
 import {authSlice} from "../util/slices/authSlice";
-import {tasksSlice} from "../util/slices/tasksSlice";
 import {todolistAPI} from "../util/rtkAPi/todolistAPI";
 import {setupListeners} from '@reduxjs/toolkit/query'
+import {tasksAPI} from "../util/api/tasksAPI";
 
 const combinedReducer = combineReducers({
   [todolistAPI.reducerPath]: todolistAPI.reducer,
+  [tasksAPI.reducerPath]: tasksAPI.reducer,
   auth: authSlice.reducer,
-  tasks: tasksSlice.reducer,
 });
 
 export const store = configureStore({
   reducer: combinedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(todolistAPI.middleware),
+    getDefaultMiddleware().concat(todolistAPI.middleware, tasksAPI.middleware),
 })
 
 setupListeners(store.dispatch)
