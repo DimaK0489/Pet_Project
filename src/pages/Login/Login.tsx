@@ -15,7 +15,7 @@ export const Login = () => {
   const [password, setPassword] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
   const [rememberMe, setRememberMe] = useState<boolean>(false)
-  const {isSuccess, isError} = useSelector(authSelector);
+  const {isSuccess, isError, isFetching} = useSelector(authSelector);
 
   useEffect(() => {
     if (isError) {
@@ -86,11 +86,15 @@ export const Login = () => {
         <input type='checkbox'
                checked={rememberMe}
                onChange={() => setRememberMe(!rememberMe)}/>
-        <label>RememberMe</label>
+        <label className={styles.checkboxTitle}>RememberMe</label>
       </div>
       <br/>
       <div className={styles.inputContainer}>
-        <input className={styles.inputButton} type="button" onClick={onButtonClick} value={'Log in'}/>
+        <input className={styles.inputButton}
+               type="button"
+               onClick={onButtonClick}
+               disabled={isFetching}
+               value={'Log in'}/>
       </div>
     </div>
   );
