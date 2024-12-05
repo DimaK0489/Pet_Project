@@ -1,58 +1,68 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import styles from "./Login.module.scss"
-import {useDispatch, useSelector} from "react-redux";
-import {authSelector, clearState, loginUser} from "../../util/slices/authSlice";
+import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {isPasswordValid, isValidEmail} from "../../util/helpers";
 import {ROUTES} from "../../common/routes";
 import {AppDispatch} from "../../store/store";
+import {useLoginMutation} from "../../util/api/authApi";
+import {setToken} from "../../util/api";
+import {setUser} from "../../util/slices/authSlice";
 
 export const Login = () => {
+  const [login, {isLoading}] = useLoginMutation();
+  const [userInfo, setUserInfo] = useState({
+    email: 'dim040489@gmail.com',
+    password: 'w1934skd',
+    rememberMe: true,
+  });
+
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const [email, setEmail] = useState<string>('');
   const [emailError, setEmailError] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
-  const [rememberMe, setRememberMe] = useState<boolean>(false)
-  const {isSuccess, isError, isFetching} = useSelector(authSelector);
 
-  useEffect(() => {
-    if (isError) {
-      dispatch(clearState());
-    }
-
-    if (isSuccess) {
-      navigate(ROUTES.todolist);
-    }
-  }, [isError, isSuccess, dispatch, navigate]);
-
-  const handleSubmit = () => {
-    dispatch(loginUser({email, password, rememberMe}));
+  const handleLogin = async (token: string) => {
+    await setToken(token);
+    dispatch(setUser({token: token}));
+    navigate(ROUTES.todolist)
   }
+
+  const handleSubmit = async () => {
+    try {
+      const resp: any = await login(userInfo).unwrap();
+      const token = await resp.data.token
+      if (resp.resultCode === 0) {
+        await handleLogin(token)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   const onButtonClick = () => {
     setEmailError('')
     setPasswordError('')
 
-    if ('' === email) {
+    if ('' === userInfo.email) {
       setEmailError('Please enter your email')
       return
     }
 
-    if (!isValidEmail(email)) {
+    if (!isValidEmail(userInfo.email)) {
       setEmailError('Please enter a valid email')
       return
     }
 
-    if (!isPasswordValid(password)) {
+    if (!isPasswordValid(userInfo.password)) {
       setPasswordError('Please enter a password')
       return
     }
-    if (isValidEmail(email) && isPasswordValid(password) && rememberMe) {
+    if (isValidEmail(userInfo.email) && isPasswordValid(userInfo.password) && userInfo.rememberMe) {
       handleSubmit()
     }
 
-    if (password.length < 7) {
+    if (userInfo.password.length < 7) {
       setPasswordError('The password must be 8 characters or longer')
       return
     }
@@ -65,27 +75,27 @@ export const Login = () => {
       </div>
       <br/>
       <div className={styles.inputContainer}>
-        <input value={email}
+        <input value={userInfo.email}
                className={styles.inputBox}
                placeholder={'Enter your email here'}
-               onChange={(event) => setEmail(event.currentTarget.value)}
+               onChange={(event) => setUserInfo({...userInfo, email: event.currentTarget.value})}
         />
         <label className={styles.errorLabel}>{emailError}</label>
       </div>
       <br/>
       <div className={styles.inputContainer}>
-        <input value={password}
+        <input value={userInfo.password}
                className={styles.inputBox}
                placeholder={'Enter your password here'}
-               onChange={(event) => setPassword(event.currentTarget.value)}
+               onChange={(event) => setUserInfo({...userInfo, password: event.currentTarget.value})}
         />
         <label className={styles.errorLabel}>{passwordError}</label>
       </div>
       <br/>
       <div className={styles.inputChecked}>
         <input type='checkbox'
-               checked={rememberMe}
-               onChange={() => setRememberMe(!rememberMe)}/>
+               checked={userInfo.rememberMe}
+               onChange={() => setUserInfo({...userInfo, rememberMe: !userInfo.rememberMe})}/>
         <label className={styles.checkboxTitle}>RememberMe</label>
       </div>
       <br/>
@@ -93,7 +103,7 @@ export const Login = () => {
         <input className={styles.inputButton}
                type="button"
                onClick={onButtonClick}
-               disabled={isFetching}
+               disabled={isLoading}
                value={'Log in'}/>
       </div>
     </div>
