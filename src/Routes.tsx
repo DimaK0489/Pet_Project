@@ -2,12 +2,15 @@ import React from "react";
 import {Route, Routes} from "react-router-dom";
 import {Login} from "./pages/Login/Login";
 import {TodoListContainer} from "./pages/TodolistContainer/TodoListContainer";
-import {getToken} from "./util/api";
 import {Loading} from "./components/Loading/Loading";
 import {useGetTodolistsQuery} from "./util/rtkAPi/todolistAPI";
 import {ROUTES} from "./common/routes";
+import {useSelector} from "react-redux";
+import {authSelector} from "./util/slices/authSlice";
+import {getToken} from "./util/api";
 
 export const TDRoutes = () => {
+  let accessToken = !!useSelector(authSelector);
   let authenticated = !!getToken();
   const {data: todolists, isLoading} = useGetTodolistsQuery();
 
@@ -15,9 +18,9 @@ export const TDRoutes = () => {
     <>
       {isLoading && <Loading/>}
       <Routes>
-        <Route path={'*'} element={!authenticated ? <Login/> : <TodoListContainer data={todolists}/>}/>
-        <Route path={ROUTES.todolist} element={<TodoListContainer data={todolists}/>}/>
+        <Route path="/" element={<Login />} />
         <Route path={ROUTES.login} element={<Login/>}/>
+        <Route path={ROUTES.todolist} element={authenticated ? <TodoListContainer data={todolists}/> : <Login/>}/>
       </Routes>
     </>
   );
