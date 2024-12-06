@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {isPasswordValid, isValidEmail} from "../../util/helpers";
 import {ROUTES} from "../../common/routes";
 import {AppDispatch} from "../../store/store";
-import {useLoginMutation} from "../../util/api/authApi";
+import {LoginUserData, useLoginMutation} from "../../util/api/authApi";
 import {setToken} from "../../util/api";
 import {setUser} from "../../util/slices/authSlice";
 
@@ -30,8 +30,8 @@ export const Login = () => {
 
   const handleSubmit = async () => {
     try {
-      const resp: any = await login(userInfo).unwrap();
-      const token = await resp.data.token
+      const resp = await login(userInfo).unwrap() as LoginUserData;
+      const token = resp.data.token
       if (resp.resultCode === 0) {
         await handleLogin(token)
       }
