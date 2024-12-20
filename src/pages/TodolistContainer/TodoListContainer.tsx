@@ -12,11 +12,10 @@ interface Props {
 
 export const TodoListContainer = ({resultData}: Props) => {
   const [addTodolist] = useAddTodolistMutation();
-  const [deleteTodolist, {error, isSuccess}] = useDeleteTodolistMutation();
+  const [deleteTodolist, {error}] = useDeleteTodolistMutation();
 
   const handleDeleteTodolist = async (todolistId: string) => {
     await deleteTodolist(todolistId)
-    console.log(isSuccess)
   }
   const handleAddTodolist = async (title: string) => {
     await addTodolist({title});
