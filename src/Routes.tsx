@@ -16,16 +16,16 @@ export const TDRoutes = () => {
       if (authenticated) {
         navigate(ROUTES.todolist)
       }
-    },
-    [authenticated])
+    }, [authenticated]
+  );
 
   return (
     <>
       {isLoading && <Loading/>}
       <Routes>
-        <Route path="/" element={authenticated ? <TodoListContainer data={todolists}/> : <Login/>}/>
+        <Route path="/" element={authenticated ? <TodoListContainer resultData={todolists}/> : <Login/>}/>
         <Route path={ROUTES.login} element={<Login/>}/>
-        <Route path={ROUTES.todolist} element={authenticated ? <TodoListContainer data={todolists}/> : ''}/>
+        <Route path={ROUTES.todolist} element={authenticated ? <TodoListContainer resultData={todolists}/> : <Login/>}/>
       </Routes>
     </>
   );

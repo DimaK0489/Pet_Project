@@ -4,30 +4,32 @@ import './stylesTodolistContainer.scss'
 import {AddForm} from "../../components/AddForm/AddForm";
 import {useAddTodolistMutation, useDeleteTodolistMutation} from "../../util/rtkAPi/todolistAPI";
 import {TodolistType} from "../../util/rtkAPi/typesForTodolist";
+import {AppAlert} from "../../components/AppAlert/AppAlert";
 
 interface Props {
-  data: TodolistType[] | undefined
+  resultData: TodolistType[] | undefined
 }
 
-export const TodoListContainer = ({data}: Props) => {
+export const TodoListContainer = ({resultData}: Props) => {
   const [addTodolist] = useAddTodolistMutation();
-  const [deleteTodolist] = useDeleteTodolistMutation();
+  const [deleteTodolist, {error, isSuccess}] = useDeleteTodolistMutation();
 
-  const handleDeleteTodolist = (todolistId: string) => {
-    deleteTodolist(todolistId)
+  const handleDeleteTodolist = async (todolistId: string) => {
+    await deleteTodolist(todolistId)
+    console.log(isSuccess)
   }
   const handleAddTodolist = async (title: string) => {
     await addTodolist({title});
-    alert("User created successfully!");
   };
 
   return (
     <div className='tc-container'>
+      {error && 'status' in error && <AppAlert message={error.data} />}
       <div className='tc-container__form'>
         <AddForm addItem={handleAddTodolist}/>
       </div>
       {
-        data && data?.map((item: any) => {
+        resultData && resultData?.map((item: TodolistType) => {
           return <div key={item.id} className='tc-container__content'>
             <Todolist
               key={item.id}

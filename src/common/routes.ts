@@ -1,4 +1,4 @@
 export const ROUTES = {
   todolist: '/todolistContainer',
-  login: '/login'
+  login: '/login',
 }

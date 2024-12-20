@@ -15,7 +15,7 @@ export const Menu: React.FC = () => {
   let authenticated = !!getToken();
 
   const handleToTodolist = () => {
-    authenticated ? navigate(ROUTES.todolist) : alert('You are not authorized')
+    authenticated ? navigate(ROUTES.todolist) : navigate(ROUTES.login)
   }
 
   return (
