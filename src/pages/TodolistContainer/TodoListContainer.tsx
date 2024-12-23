@@ -20,6 +20,9 @@ export const TodoListContainer = ({resultData}: Props) => {
   const handleAddTodolist = async (title: string) => {
     await addTodolist({title});
   };
+  const handleChangeTitleForTodolist = async (todolistId: string, newTitle: string) => {
+
+  }
 
   return (
     <div className='tc-container'>
@@ -35,6 +38,7 @@ export const TodoListContainer = ({resultData}: Props) => {
               todolistId={item.id}
               title={item.title}
               onDeleteTodolist={handleDeleteTodolist}
+              onChangeTitleForTodolist={handleChangeTitleForTodolist}
             />
           </div>
         })

@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import Alert from '@mui/material/Alert';
 import {AlertTitle, Snackbar} from "@mui/material";
 
-
 interface Props {
   status?: number
   message: any
