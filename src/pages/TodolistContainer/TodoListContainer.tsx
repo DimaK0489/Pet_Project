@@ -2,7 +2,11 @@ import React from "react";
 import {Todolist} from "./Todolist/Todolist";
 import './stylesTodolistContainer.scss'
 import {AddForm} from "../../components/AddForm/AddForm";
-import {useAddTodolistMutation, useDeleteTodolistMutation} from "../../util/rtkAPi/todolistAPI";
+import {
+  useAddTodolistMutation,
+  useDeleteTodolistMutation,
+  useUpdateTitleForTodolistMutation
+} from "../../util/rtkAPi/todolistAPI";
 import {TodolistType} from "../../util/rtkAPi/typesForTodolist";
 import {AppAlert} from "../../components/AppAlert/AppAlert";
 
@@ -12,6 +16,7 @@ interface Props {
 
 export const TodoListContainer = ({resultData}: Props) => {
   const [addTodolist] = useAddTodolistMutation();
+  const [updateTitleForTodolist] = useUpdateTitleForTodolistMutation();
   const [deleteTodolist, {error}] = useDeleteTodolistMutation();
 
   const handleDeleteTodolist = async (todolistId: string) => {
@@ -20,8 +25,8 @@ export const TodoListContainer = ({resultData}: Props) => {
   const handleAddTodolist = async (title: string) => {
     await addTodolist({title});
   };
-  const handleChangeTitleForTodolist = async (todolistId: string, newTitle: string) => {
-
+  const handleChangeTitleForTodolist = async (todolistId: string, title: string) => {
+    await updateTitleForTodolist({todolistId, title})
   }
 
   return (

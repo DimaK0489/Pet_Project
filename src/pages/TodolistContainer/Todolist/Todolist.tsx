@@ -10,19 +10,22 @@ interface Props {
   todolistId: string
   title: string
   onDeleteTodolist: (todolistId: string) => void
-  onChangeTitleForTodolist: (todolistId: string, newTitle: string) => void
+  onChangeTitleForTodolist: (todolistId: string, title: string) => void
 }
 
 export const Todolist: React.FC<Props> = ({todolistId, title, onDeleteTodolist, onChangeTitleForTodolist}: Props) => {
   const {data: tasks, isLoading} = useGetTasksQuery(todolistId);
 
+  const onChangeTodoListTitle = (title: string) => {
+    onChangeTitleForTodolist(todolistId, title)
+  }
   return (
     <div key={todolistId} className='tl-container'>
       {isLoading && <Loading/>}
       <div className='tl-container__header'>
         <h4 className='tl-container__title'>
           <EditField title={title}
-                     onChangeItem={() => onChangeTitleForTodolist(todolistId, title)}/>
+                     onChangeItem={onChangeTodoListTitle}/>
         </h4>
         <DeleteIcon color={'error'} onClick={() => onDeleteTodolist(todolistId)}/>
       </div>

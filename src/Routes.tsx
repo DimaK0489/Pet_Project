@@ -6,6 +6,7 @@ import {Loading} from "./components/Loading/Loading";
 import {useGetTodolistsQuery} from "./util/rtkAPi/todolistAPI";
 import {ROUTES} from "./common/routes";
 import {getToken} from "./util/api";
+import {Calendar} from "./pages/Calendar/Calendar";
 
 export const TDRoutes = () => {
   let authenticated = !!getToken();
@@ -26,6 +27,7 @@ export const TDRoutes = () => {
         <Route path="/" element={authenticated ? <TodoListContainer resultData={todolists}/> : <Login/>}/>
         <Route path={ROUTES.login} element={<Login/>}/>
         <Route path={ROUTES.todolist} element={authenticated ? <TodoListContainer resultData={todolists}/> : <Login/>}/>
+        <Route path={ROUTES.calendar} element={authenticated ? <Calendar /> : <Login/>}/>
       </Routes>
     </>
   );

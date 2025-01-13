@@ -17,18 +17,21 @@ export const Menu: React.FC = () => {
   const handleToTodolist = () => {
     authenticated ? navigate(ROUTES.todolist) : navigate(ROUTES.login)
   }
+  const handleToCalendar = () => {
+    authenticated ? navigate(ROUTES.calendar) : navigate(ROUTES.login)
+  }
 
   return (
     <div className='tl-menu'>
       <div className='tl-menu__body'>
         <div className='tl-menu__left'>
           <div className='tl-menu__logo' onClick={handleToTodolist}>
-            <p className='tl-menu__titleLogo'> Todolist</p>
+            <p className='tl-menu__titleLogo'>Todolist</p>
             <img className={"tl-menu__icon"} src={todo} alt={'todo'}/>
           </div>
         </div>
         <ul className='tl-menu__listItems'>
-          <li className='tl-menu__item'>Calendar</li>
+          <li className='tl-menu__item' onClick={handleToCalendar}>Calendar</li>
           <li className='tl-menu__item'>Profile</li>
           <li className='tl-menu__item'>Settings</li>
         </ul>
