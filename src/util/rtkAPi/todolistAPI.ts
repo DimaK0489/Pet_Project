@@ -44,7 +44,7 @@ export const todolistAPI = createApi({
       }),
       invalidatesTags: ['Todolists']
     }),
-    updateTitleForTodolist: build.mutation({
+    updateTitleForTodolist: build.mutation<ResponseType, {todolistId: string, title: string}>({
       query: (payload) => ({
         url: endpoints.UPDATE_TITLE_TODOLIST(payload.todolistId),
         method: 'PUT',

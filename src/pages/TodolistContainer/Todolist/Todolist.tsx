@@ -16,8 +16,8 @@ interface Props {
 export const Todolist: React.FC<Props> = ({todolistId, title, onDeleteTodolist, onChangeTitleForTodolist}: Props) => {
   const {data: tasks, isLoading} = useGetTasksQuery(todolistId);
 
-  const onChangeTodoListTitle = (title: string) => {
-    onChangeTitleForTodolist(todolistId, title)
+  const onChangeTodoListTitle = (newTitle: string) => {
+    onChangeTitleForTodolist(todolistId, newTitle)
   }
   return (
     <div key={todolistId} className='tl-container'>
