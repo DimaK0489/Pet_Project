@@ -1,10 +1,16 @@
 import React from "react";
-import {useGetTasksQuery} from "../../../util/api/tasksAPI";
+import {
+  useAddTaskMutation,
+  useDeleteTaskMutation,
+  useGetTasksQuery,
+  useUpdateTaskMutation
+} from "../../../util/api/tasksAPI";
 import './stylesTodolist.scss'
 import {Task} from "../../../components/Task/Task";
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Loading} from "../../../components/Loading/Loading";
 import {EditField} from "../../../components/EditField/EditField";
+import {AddForm} from "../../../components/AddForm/AddForm";
 
 interface Props {
   todolistId: string
@@ -15,10 +21,26 @@ interface Props {
 
 export const Todolist: React.FC<Props> = ({todolistId, title, onDeleteTodolist, onChangeTitleForTodolist}: Props) => {
   const {data: tasks, isLoading} = useGetTasksQuery(todolistId);
+  const [addTask] = useAddTaskMutation();
+  const [deleteTask] = useDeleteTaskMutation();
+  const [updateTask] = useUpdateTaskMutation();
 
   const onChangeTodoListTitle = (newTitle: string) => {
     onChangeTitleForTodolist(todolistId, newTitle)
   }
+
+  const handleAddTask = async (title: string) => {
+    await addTask({title, todolistId})
+  }
+
+  const handleDeleteTask = async (todolistId: string, taskId: string) => {
+    await deleteTask({todolistId, taskId})
+  }
+
+  const handleUpdateTask = async (todolistId: string, taskId: string, title: string) => {
+    await updateTask({todolistId, taskId, title})
+  }
+
   return (
     <div key={todolistId} className='tl-container'>
       {isLoading && <Loading/>}
@@ -27,11 +49,21 @@ export const Todolist: React.FC<Props> = ({todolistId, title, onDeleteTodolist, 
           <EditField title={title}
                      onChangeItem={onChangeTodoListTitle}/>
         </h4>
-        <DeleteIcon color={'error'} onClick={() => onDeleteTodolist(todolistId)}/>
+        <DeleteIcon className='t-container__deleteIcon' color={'error'} onClick={() => onDeleteTodolist(todolistId)}/>
       </div>
       <div className='tl-container__content'>
-        {!tasks?.items.length && <div className={'tl-container__empty'}>No task</div>}
-        {tasks?.items.map(task => <Task key={task.id} task={task} todolistID={todolistId}/>)}
+        <div className='tl-container__addForm'>
+          <AddForm titleForComponent={'Enter title for Task'} addItem={handleAddTask}/>
+        </div>
+        <div className='tl-container__tasks'>
+          {!tasks?.items.length && <div className={'tl-container__empty'}>No task</div>}
+          {tasks?.items.map(task => <Task key={task.id}
+                                          task={task}
+                                          todolistID={todolistId}
+                                          removalTask={handleDeleteTask}
+                                          refreshTask={handleUpdateTask}
+          />)}
+        </div>
       </div>
     </div>
   );

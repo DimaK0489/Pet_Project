@@ -33,7 +33,7 @@ export const TodoListContainer = ({resultData}: Props) => {
     <div className='tc-container'>
       {error && 'status' in error && <AppAlert message={error.data} />}
       <div className='tc-container__form'>
-        <AddForm addItem={handleAddTodolist}/>
+        <AddForm titleForComponent={'Enter title for Todolist'} addItem={handleAddTodolist}/>
       </div>
       {
         resultData && resultData?.map((item: TodolistType) => {

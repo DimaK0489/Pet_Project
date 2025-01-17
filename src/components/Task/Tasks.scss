@@ -10,10 +10,17 @@
     max-width: 32vh;
     padding: 15px;
     border-bottom: 1px solid $red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   &__title {
     color: $bg-color-dark-3;
     font-size: $fontSizeL;
+  }
+
+  &__deleteIcon {
+    cursor: pointer;
   }
 }

@@ -22,13 +22,31 @@
     font-weight: lighter;
   }
 
+  &__deleteIcon {
+    cursor: pointer;
+  }
+
   &__content {
+    width: 100vh;
+    max-width: 42vh;
     height: 100vh;
     max-height: 35vh;
     display: flex;
     flex-direction: column;
     margin: 10px 0 10px 10px;
     overflow: auto;
+  }
+
+  &__addForm {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__tasks {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__empty {

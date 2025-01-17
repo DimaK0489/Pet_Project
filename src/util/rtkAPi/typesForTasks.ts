@@ -33,4 +33,9 @@ export interface GetTasksResponse {
   items: TaskType[]
 }
 
+export interface CommonResponseForTasks {
+  resultCode: number
+  messages: Array<string>
+  data: { item: TaskType }
+}
 

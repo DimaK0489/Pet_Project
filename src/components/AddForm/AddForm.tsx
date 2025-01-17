@@ -4,10 +4,11 @@ import './AddForm.scss'
 import AddIcon from '@mui/icons-material/Add';
 
 interface Props {
+  titleForComponent: string;
   addItem: (title: string) => void;
 }
 
-export const AddForm: React.FC<Props> = ({addItem}: Props) => {
+export const AddForm: React.FC<Props> = ({addItem, titleForComponent}: Props) => {
   const [title, setTitle] = useState('');
 
   const onChangeNewTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +32,7 @@ export const AddForm: React.FC<Props> = ({addItem}: Props) => {
     <div className='tl-containerForm'>
       <div className='tl-containerForm__input'>
         <Input
-          placeholder={'Enter title for Todolist'}
+          placeholder={titleForComponent}
           value={title}
           onChange={onChangeNewTitle}
           onKeyPress={handleKeyPress}

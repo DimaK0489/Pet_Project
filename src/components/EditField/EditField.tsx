@@ -21,12 +21,19 @@ export const EditField = ({title, onChangeItem}: Props) => {
     setNewTitle(e.currentTarget.value)
   }
 
+  const handleKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      offEditMode()
+    }
+  }
+
   return (
     editMode
       ? <TextField variant={"standard"}
                    color={'success'}
                    value={newTitle}
                    autoFocus
+                   onKeyPress={handleKeyPress}
                    onBlur={offEditMode}
                    onChange={onChangeHandler}/>
       : <span onDoubleClick={onEditMode}>{title}</span>
