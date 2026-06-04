@@ -13,7 +13,7 @@ export const Login = () => {
   const [login, {isLoading}] = useLoginMutation();
   const [userInfo, setUserInfo] = useState({
     email: 'dim040489@gmail.com',
-    password: 'w1934skd',
+    password: '*******',
     rememberMe: true,
   });
 
